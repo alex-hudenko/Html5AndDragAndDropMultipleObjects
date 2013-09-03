@@ -1,0 +1,202 @@
+html,body{
+    height:100%;
+    overflow:hidden
+}
+body{
+    margin:0;
+    background:-webkit-radial-gradient(#5efdcf, #2f8c50);
+    background:-moz-radial-gradient(#5efdcf, #2f8c50);
+    background:-ms-radial-gradient(#5efdcf, #2f8c50);
+    background:radial-gradient(#5efdcf, #2f8c50);
+}
+
+body {
+    padding: 50px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.items-container {
+    position: absolute;
+    left: 0;
+    top: 10%;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+
+.items {
+    width: 770px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.items .item, .dropzone .item {
+    margin-right: 10px;
+}
+
+.item {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    float: left;
+    color: #fff;
+    background: #E5E4A2;
+}
+
+.items .item {
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item span {
+    text-align: center;
+    text-transform: capitalize;
+    display: block;
+    width:30px;
+    height: 30px;
+    margin:  35px 0 0 35px;
+    display: none;
+}
+
+.selected {
+    background: #FFA2C2;
+}
+
+.dropzone-container {
+    position: absolute;
+    left: 0;
+    bottom: 10%;
+    width: 100%;
+    height: 400px;
+    text-align: center;
+}
+
+.dropzone {
+    border: dashed 1px #87e8cc;
+    width: 700px;
+    height: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.dropzone.dragover {
+    background: rgba(255,255,255,0.1);
+}
+
+.dropzone .item {
+    pointer-events: none;
+    border: 0;
+    margin: 0;
+}
+
+.dropzone-title {
+    pointer-events: none;
+    position: relative;
+    left: 35%;
+    top: 220px;
+    display: block;
+    width: 30%;
+    height: 50px;
+    color: #ffffff;
+    font-family: "Helvetica Neue", Verdana;
+    font-weight: 100;
+    font-size: 50px;
+}
+
+
+.dropzone .item {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.dropzone .item:nth-of-type(2n) {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dropzone .item:nth-of-type(3n) {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.dropzone .item:nth-of-type(4n) {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.dropzone .item:nth-of-type(5n) {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.dropzone .item:nth-of-type(8n) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.dropzone .item:nth-of-type(9n) {
+    background: rgba(0, 0, 0, 0.23);
+}
+
+.dropzone .item:nth-of-type(10n) {
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.dropzone .item {
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.dropzone .item {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+.dropzone .item {
+    transition: opacity 1s;
+    -webkit-transition:opacity 1s;
+}
+
+.dropzone-container.completed .dropzone .item {
+    opacity: 0;
+}
+
+
+.dropzone-container.completed .dropzone {
+    background:transparent url(habralogo.png) center center no-repeat;
+    border: 0;
+}
+
+.dropzone-container.completed .dropzone-title {
+    visibility: hidden;
+}

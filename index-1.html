@@ -1,0 +1,120 @@
+<html>
+<head>
+    <title>Некрасиво</title>
+	<meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="items-container">
+    <div class="items">
+        <div class="item"><span>a</span></div>
+        <div class="item"><span>b</span></div>
+        <div class="item"><span>c</span></div>
+        <div class="item"><span>d</span></div>
+        <div class="item"><span>e</span></div>
+        <div class="item"><span>f</span></div>
+        <div class="item"><span>g</span></div>
+    </div>
+</div>
+
+<div class="dropzone-container">
+    <div class="dropzone-title">Тащить сюда!</div>
+    <div class="dropzone">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+
+        // jQuery убирает у объектов событий "лишние" свойства, по этому, если мы хотим использовать HTML5
+        // примочки вместе с jQuery, нужно включить для событий свойство dataTransfer.
+        jQuery.event.props.push('dataTransfer');
+
+        // И еще парочку.
+        jQuery.event.props.push('pageX');
+        jQuery.event.props.push('pageY');
+
+        // Элементы для перетаскивания.
+        $('.item')
+
+            // По клику устанавливаем/снимаем выделение, переключаем свойство draggable.
+            .on('click', function(e) {
+                e.preventDefault();
+                $(this).toggleClass('selected');
+                this.draggable = $(this).hasClass('selected');
+            })
+
+            // Перед тем как начать перетаскивать элементы,
+            .on('dragstart', function(e) {
+                var html = '',
+                    // находим все выделенные элементы,
+                    $selectedItems = $('.items .selected');
+
+                // собираем HTML выделенных элементов.
+                $selectedItems.each(function() {
+                    html += this.outerHTML;
+                });
+
+                // Устанавливаем собранный HTML в качестве данных для перетаскивания.
+                // Это никак не влияет на визуальную часть.
+                e.dataTransfer.setData('text/html', html);
+
+                return true;
+            })
+
+            .on('dragend', function(e) {
+                resetUI();
+            });
+
+        // Дропзона
+        $('.dropzone')
+
+            // При наведении добавляем класс dragover
+            .on('dragenter', function(e) {
+                $(this).addClass('dragover');
+            })
+
+            // Убираем класс dragover
+            .on('dragleave', function(e) {
+                $(this).removeClass('dragover');
+            })
+            .on('dragover', function(e) {
+                // Что бы до элемента дошло событие drop, нужно запретить передачу по цепочке события dragover
+                if (e.preventDefault) e.preventDefault();
+                return false;
+            })
+
+            // Обрабатываем drop
+            .on('drop', function(e) {
+                // Доастем HTML из события
+                var html = e.dataTransfer.getData('text/html');
+
+                // Добавляем HTML к дропзоне
+                $(this).append(html);
+
+                resetUI();
+                return true;
+            });
+
+        function resetUI() {
+            $('.selected').removeClass('selected').attr('draggable', false);
+            $('.dragover').removeClass('dragover');
+        }
+
+        var loop = window.setInterval(function(){
+            if ($('.dropzone .item').size() >= 28) {
+                $('.dropzone-container').addClass('completed');
+                window.clearInterval(loop);
+            }
+        }, 1000);
+
+    });
+
+</script>
+
+</body>
+</html>
