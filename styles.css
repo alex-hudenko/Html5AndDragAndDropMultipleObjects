@@ -183,12 +183,19 @@ body {
 }
 
 .dropzone .item {
-    transition: opacity 1s;
-    -webkit-transition:opacity 1s;
+    transition: opacity 1s linear;
+    -webkit-transition:opacity 1s linear;
+    -ms-transition:opacity 1s linear;
+    -o-transition:opacity 1s linear;
 }
 
 .dropzone-container.completed .dropzone .item {
     opacity: 0;
+
+    -webkit-animation-name: none;
+    -moz-animation-name: none;
+    -o-animation-name: none;
+    animation-name: none;
 }
 
 
