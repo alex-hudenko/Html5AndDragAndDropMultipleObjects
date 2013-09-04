@@ -20,11 +20,18 @@ body {
     user-select: none;
 }
 
+h1 {
+    color: #ffffff;
+    font-family: "Helvetica Neue", Verdana;
+    font-weight: 100;
+    font-size: 50px;
+}
+
 
 .items-container {
     position: absolute;
     left: 0;
-    top: 10%;
+    top: 0;
     width: 100%;
     height: 100px;
     text-align: center;
